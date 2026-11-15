@@ -171,7 +171,7 @@ function init() {
       var email = getVal('sub-email').trim();
       var msg = document.getElementById('sub-msg');
       if (!email || email.indexOf('@') < 0) { if (msg) { msg.textContent = '请填写有效的邮箱地址。'; msg.style.color = '#c8102e'; } return; }
-      if (msg) { msg.textContent = '已收到！资料包为占位订阅（本站无后端），请留意邮箱。也可以直接发邮件到北美雄吉频道留言。'; msg.style.color = '#0b7a3e'; }
+      if (msg) { msg.textContent = '订阅功能还没接通：你的邮箱没有被保存，也不会收到邮件。等邮件服务接好后再订阅，抱歉。'; msg.style.color = '#c8102e'; }
       form.reset();
     });
   }
