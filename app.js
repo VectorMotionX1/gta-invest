@@ -164,17 +164,9 @@ function init() {
   var usd = document.getElementById('cdr-usd'), sel = document.getElementById('cdr-ticker');
   if (usd) usd.addEventListener('input', renderCdr);
   if (sel) sel.addEventListener('change', renderCdr);
-  var form = document.getElementById('subscribe-form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = getVal('sub-email').trim();
-      var msg = document.getElementById('sub-msg');
-      if (!email || email.indexOf('@') < 0) { if (msg) { msg.textContent = '请填写有效的邮箱地址。'; msg.style.color = '#c8102e'; } return; }
-      if (msg) { msg.textContent = '订阅功能还没接通：你的邮箱没有被保存，也不会收到邮件。等邮件服务接好后再订阅，抱歉。'; msg.style.color = '#c8102e'; }
-      form.reset();
-    });
-  }
+  // Subscribe form is a plain HTML POST to Buttondown (embed-subscribe/xiong).
+  // Do not intercept it with fetch/preventDefault: Buttondown may need its
+  // own confirmation/CAPTCHA flow in the new tab.
   renderSplit(); renderFlip(); renderCdr();
 }
 
