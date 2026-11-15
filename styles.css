@@ -108,3 +108,18 @@ footer a{color:#fff}
   .hero-stats{grid-template-columns:1fr}
   body{font-size:15px}
 }
+
+/* Print: calculator sheets print cleanly, nav and forms stay out. */
+@media print{
+  .topbar nav, .hero .cta-row, form.subscribe, .preset-row{display:none !important}
+  body{background:#fff;font-size:12pt}
+  .card{border:1px solid #999;break-inside:avoid}
+  .hero{background:#fff;color:#111;padding:0}
+  .hero h1{color:#111;text-shadow:none}
+  .hero h1 .blue-line{color:#111}
+  .hero p.lede{color:#333}
+  footer{background:#fff;color:#333}
+  footer h3{color:#111}
+  footer a{color:#111}
+  a{color:#111;text-decoration:none}
+}

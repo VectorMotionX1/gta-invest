@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vectormotionx1.github.io/gta-invest/sitemap.xml

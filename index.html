@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GTA投资实验室 — 北美雄吉出品 | 多伦多房产抄底、分租与翻新算账</title>
-<meta name="description" content="北美雄吉出品的 GTA 房产投资工具站：7 套亏本成交实录、分租回报计算器、翻新转手计算器、美股 CDR 换算器。数据来自 HouseSigma，截至 2026 年 10 月。">
+<meta name="description" content="北美雄吉出品的 GTA 房产投资工具站：7 套亏本成交实录、分租回报计算器、翻新转手计算器、美股 CDR 换算器。数据来自 HouseSigma，截至 2026 年 10 月。月供按加拿大半年复利测算。">
+<link rel="canonical" href="https://vectormotionx1.github.io/gta-invest/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GTA投资实验室 — 北美雄吉出品">
+<meta property="og:description" content="先算现金流，再谈房价涨不涨。7 套亏本成交实录、分租与翻新算账、CDR 换算。">
+<meta property="og:url" content="https://vectormotionx1.github.io/gta-invest/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GTA投资实验室 — 北美雄吉出品">
+<meta name="twitter:description" content="先算现金流，再谈房价涨不涨。7 套亏本成交实录、分租与翻新算账、CDR 换算。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Analytics: no tracker ID yet. Add Plausible or GA here only after Andy
+     supplies the ID (see TASKS.md). Do not invent a tracking ID. -->
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,6 +29,7 @@
       <a href="#flip">翻新计算器</a>
       <a href="#cdr">CDR 换算</a>
       <a href="#pack">资料包</a>
+      <a href="https://property-playbooks.vercel.app/" target="_blank" rel="noopener">买房工具包</a>
     </nav>
   </div>
 </header>
@@ -68,7 +80,7 @@
           </tbody>
         </table>
       </div>
-      <p class="small">数据来源：HouseSigma（PROPTX），加元，数据截至 2026 年 10 月。亏损仅为买卖价差，未计中介费、土地转让税、律师费和持有期利息，真实亏损只会更大。逐项亏损相加为 $1,529,999，标题的 $1,530,000 为脚本原标题的四舍五入约数。挂牌价与在市天数见 <a href="data.json">data.json</a>。</p>
+      <p class="small">数据来源：HouseSigma（PROPTX），加元，数据截至 2026 年 10 月。亏损仅为买卖价差，未计中介费、土地转让税、律师费和持有期利息，真实亏损只会更大。逐项亏损相加为 $1,529,999，标题的 $1,530,000 为脚本原标题的四舍五入约数。挂牌价与在市天数见 <a href="data.json">data.json</a>。11 月成交数据待取得可核实的来源后才加入，本站不发布未经核实的成交数字。</p>
       <div class="callout">
         <strong>三个共同点：</strong>① 把“跌了很多”当成“跌到底了”；② 只算房价，不算持有成本；③ 把流动性当成理所当然。抄底失败不是运气差，是方法错了。
       </div>
@@ -86,6 +98,7 @@
         <button class="preset" type="button" data-preset="burlington">Burlington 2379 Maryvale Ct · $766,000</button>
         <button class="preset" type="button" data-preset="markham">Markham 23 Southdale Dr · $1,450,000（未售出）</button>
       </div>
+      <p class="note" id="sp-preset-note" aria-live="polite"></p>
 
       <div class="grid">
         <div>
@@ -93,6 +106,7 @@
           <input id="sp-price" type="number" value="881000" min="0" step="1000">
           <label for="sp-down">首付（%）</label>
           <input id="sp-down" type="number" value="20" min="0" max="100" step="1">
+          <p class="callout warn" id="sp-cmhc-warning" style="display:none">首付低于 20% 时，加拿大通常要求房贷保险，保险费未计入上面的月供和持有成本，请向贷款顾问要包含保险的书面数字。</p>
           <label for="sp-rate">示例利率（% / 年）</label>
           <input id="sp-rate" type="number" value="4.79" min="0" step="0.01">
           <label for="sp-years">摊还年限（年）</label>
@@ -107,18 +121,26 @@
           <input id="sp-tax" type="number" value="3589" min="0" step="1">
           <label for="sp-ins">保险（$/月）</label>
           <input id="sp-ins" type="number" value="150" min="0" step="1">
+          <label for="sp-condo">公寓管理费（$/月，独立屋填 0）</label>
+          <input id="sp-condo" type="number" value="0" min="0" step="1">
+          <label for="sp-vacancy">空置预留（% 租金）</label>
+          <input id="sp-vacancy" type="number" value="0" min="0" max="100" step="1">
+          <label for="sp-maint">维修预留（$/月）</label>
+          <input id="sp-maint" type="number" value="0" min="0" step="1">
         </div>
         <div class="results" aria-live="polite">
           <h3>算账结果</h3>
           <dl>
             <div class="row"><dt>贷款额</dt><dd id="sp-loan">—</dd></div>
-            <div class="row"><dt>月供</dt><dd id="sp-payment">—</dd></div>
-            <div class="row"><dt>持有成本 / 月（月供＋地税＋保险）</dt><dd id="sp-holding" class="big">—</dd></div>
-            <div class="row"><dt>整租现金流 / 月</dt><dd id="sp-whole-cf">—</dd></div>
-            <div class="row"><dt>分租现金流 / 月</dt><dd id="sp-split-cf">—</dd></div>
+            <div class="row"><dt>月供（加拿大半年复利）</dt><dd id="sp-payment">—</dd></div>
+            <div class="row"><dt>持有成本 / 月（月供＋地税＋保险＋管理费）</dt><dd id="sp-holding" class="big">—</dd></div>
+            <div class="row"><dt>整租现金流 / 月（毛账）</dt><dd id="sp-whole-cf">—</dd></div>
+            <div class="row"><dt>分租现金流 / 月（毛账）</dt><dd id="sp-split-cf">—</dd></div>
+            <div class="row"><dt>整租现金流 / 月（扣空置和维修后）</dt><dd id="sp-whole-net">—</dd></div>
+            <div class="row"><dt>分租现金流 / 月（扣空置和维修后）</dt><dd id="sp-split-net">—</dd></div>
             <div class="row"><dt>分租比整租多 / 月</dt><dd id="sp-diff">—</dd></div>
           </dl>
-          <p class="note">Scarborough 预填结果应约为：月供 $4,034，持有成本 $4,484，整租 −$1,132，分租 +$664，差额 $1,796。扣掉 5% 空置预留（约 $257）后，分租约剩 $407，再留维修费就基本打平——不是暴利，是方向变了。</p>
+          <p class="note">Scarborough 预填结果应约为：月供 $4,015，持有成本 $4,464，整租 −$1,112，分租 +$684，差额 $1,796。扣掉 5% 空置预留（约 $257）后，分租约剩 $426，再留 $200 维修费约剩 $226——不是暴利，是方向变了。上面空置和维修栏默认是 0，填上数字后净账行会跟着变。</p>
         </div>
       </div>
 
@@ -132,17 +154,17 @@
         <div class="case">
           <h3>Burlington · 2379 Maryvale Ct</h3>
           <p>2026-10-16 以 <b>$766,000</b> 售出；2026-05 曾成交 $540,000，约 5 个月涨约 42%。3 房镇屋，成品地下室。</p>
-          <p>整租估算 <b>$3,156</b>，持有成本约 $3,913，整租现金流 <span class="big">−$757/月</span>。地税 $3,420/年。</p>
+          <p>整租估算 <b>$3,156</b>，持有成本约 $3,896，整租现金流 <span class="big">−$740/月</span>。地税 $3,420/年。</p>
           <p class="small">结论：纯翻新转手。租金没跟着翻新价涨，按翻新价买来收租算不过。</p>
         </div>
         <div class="case">
           <h3>Markham · 23 Southdale Dr</h3>
           <p><b>$1,450,000</b> 挂牌 137 天后终止，<b>未售出</b>；此前 $1,625,000 和 $1,599,000 均过期。</p>
-          <p>已租出 $3,100＋$2,500＝<span class="big">$5,600</span>，整租估算 $3,570；持有成本约 $7,314，分租仍倒贴 <span class="big">−$1,714/月</span>。</p>
+          <p>已租出 $3,100＋$2,500＝<span class="big">$5,600</span>，整租估算 $3,570；持有成本约 $7,283，分租仍倒贴 <span class="big">−$1,683/月</span>。</p>
           <p class="small">结论：分门能把亏损砍掉一半多，但救不了买贵的价格。下层未写明已是合法套间，须向市政核实。</p>
         </div>
       </div>
-      <p class="small">测算假设（全站统一）：20% 首付、示例利率 4.79%、25 年摊还。月供为统一假设下的测算，<strong>不是银行报价</strong>；保险按 Scarborough $150、Burlington $120、Markham $200 估算。租金未扣空置和维修时先算毛账。分门出租前请核实合法性、分区与消防要求，并咨询专业人士。</p>
+      <p class="small">测算假设（全站统一）：20% 首付、示例利率 4.79%、25 年摊还，月供按加拿大半年复利测算。月供为统一假设下的测算，<strong>不是银行报价</strong>；保险按 Scarborough $150、Burlington $120、Markham $200 估算。持有成本含月供、地税、保险和管理费；毛账未扣空置和维修，净账行按你填的空置和维修预留扣除。分门出租前请核实合法性、分区与消防要求，并咨询专业人士。</p>
     </div>
   </section>
 
@@ -150,15 +172,19 @@
   <section id="flip">
     <div class="card">
       <h2>翻新转手计算器 <span class="tag">毛差 ≠ 净利润</span></h2>
-      <p>预填 Burlington 真实案例：2026-05 以 $540,000 成交，2026-10-16 以 $766,000 售出，毛差 $226,000，涨幅约 42%。请把装修费和持有/中介/税费填进去，再看真利润。</p>
+      <p>预填 Burlington 真实案例：2026-05 以 $540,000 成交，2026-10-16 以 $766,000 售出，毛差 $226,000，涨幅约 42%。请把装修费、持有和税费、中介费填进去，再看真利润。预填中介费 5%、持有 5 个月，净利约 $187,700（装修和税费为 0 时），年化约 83%，装修和税费一扣就完全不同。</p>
       <div class="grid">
         <div>
           <label for="fl-buy">买入价（加元）</label>
           <input id="fl-buy" type="number" value="540000" min="0" step="1000">
           <label for="fl-reno">装修费（加元）</label>
           <input id="fl-reno" type="number" value="0" min="0" step="1000">
-          <label for="fl-costs">持有 / 中介 / 税费等（加元）</label>
+          <label for="fl-costs">持有 / 税费等（加元，不含卖出中介费）</label>
           <input id="fl-costs" type="number" value="0" min="0" step="1000">
+          <label for="fl-commission">卖出中介费（% 卖出价）</label>
+          <input id="fl-commission" type="number" value="5" min="0" max="100" step="0.5">
+          <label for="fl-months">持有月数（月，用于年化）</label>
+          <input id="fl-months" type="number" value="5" min="0" step="1">
           <label for="fl-sell">卖出价（加元）</label>
           <input id="fl-sell" type="number" value="766000" min="0" step="1000">
         </div>
@@ -167,9 +193,11 @@
           <dl>
             <div class="row"><dt>买卖毛差</dt><dd id="fl-gross">—</dd></div>
             <div class="row"><dt>毛差占买入价</dt><dd id="fl-gross-pct">—</dd></div>
-            <div class="row"><dt>总投入（买入＋装修＋其他）</dt><dd id="fl-total">—</dd></div>
-            <div class="row"><dt>净利润</dt><dd id="fl-net" class="big">—</dd></div>
+            <div class="row"><dt>卖出中介费</dt><dd id="fl-commission-out">—</dd></div>
+            <div class="row"><dt>总投入（买入＋装修＋其他，不含卖出中介费）</dt><dd id="fl-total">—</dd></div>
+            <div class="row"><dt>净利润（已扣中介费，未扣所得税）</dt><dd id="fl-net" class="big">—</dd></div>
             <div class="row"><dt>净回报率（净利 ÷ 总投入）</dt><dd id="fl-return">—</dd></div>
+            <div class="row"><dt>年化净回报率（按持有月数折算）</dt><dd id="fl-annualized">—</dd></div>
           </dl>
           <p class="note">装修是真换了厨房卫浴、屋顶、暖通和电路，还是只刷了漆、换了地板、摆了家具拍照？有没有装修许可？同区没翻新的同类房卖多少？答不上来，就是在为别人的利润买单。12 个月内转手可能适用翻新转手规则，利润按生意收入计税，具体问会计师。</p>
         </div>
@@ -181,7 +209,7 @@
   <section id="cdr">
     <div class="card">
       <h2>美股 CDR 换算器 <span class="tag">加元约算</span></h2>
-      <p>在加拿大用加元买美股，不用换美元：CDR 是按比例持有美股的加元计价凭证。输入美股价格，换算约算的 CDR 加元价。</p>
+      <p>在加拿大用加元买美股，不用换美元：CDR 是按比例持有美股的加元计价凭证。输入美股价格，换算约算的 CDR 加元价。因子每日浮动，下面是 2026 年 10 月案例期间的约算值，请以 <a href="https://cdr.cibc.com/" target="_blank" rel="noopener">CIBC CDR 官网</a>为准。</p>
       <div class="grid">
         <div>
           <label for="cdr-ticker">股票</label>
@@ -189,7 +217,6 @@
             <option value="GOOG">GOOG · Alphabet / Google（因子约 0.1593）</option>
             <option value="NVDA">NVDA · NVIDIA（因子约 0.223）</option>
             <option value="ISRG">ISRG · Intuitive Surgical（因子约 0.0517）</option>
-            <option value="SPCX">SPCX（因子约 0.1662 · 无 CDR，仅参考）</option>
           </select>
           <label for="cdr-usd">美股价格（美元）</label>
           <input id="cdr-usd" type="number" placeholder="例如 280" min="0" step="0.01">
@@ -199,8 +226,8 @@
           <dl>
             <div class="row"><dt>约算 CDR 价</dt><dd id="cdr-out" class="big">—</dd></div>
           </dl>
-          <p class="note" id="cdr-note">因子约 0.1593，每日浮动，仅为约算值。CDR 价格还受汇率对冲、费用等因素影响。</p>
-          <p class="note">CDR 持有人没有直接投票权和代理权，但可在 cdr.cibc.com 提交投票指示，CIBC 会尽力按指示投票；股息以加元发放，扣 15% 美国预扣税后到账。CDR 在多伦多交易时间 9:30–16:00 交易，美股盘后价不能直接交易。</p>
+          <p class="note" id="cdr-note">因子约 0.1593（2026 年 10 月案例期间的约算值），每日浮动，仅为约算值。CDR 价格还受汇率对冲、费用等因素影响，请以 CIBC 官网为准。</p>
+          <p class="note">CDR 持有人没有直接投票权和代理权，但可在 <a href="https://cdr.cibc.com/" target="_blank" rel="noopener">cdr.cibc.com</a> 提交投票指示，CIBC 会尽力按指示投票；股息以加元发放，扣 15% 美国预扣税后到账。CDR 在多伦多交易时间 9:30–16:00 交易，美股盘后价不能直接交易。</p>
         </div>
       </div>
     </div>
@@ -210,20 +237,21 @@
   <section id="pack">
     <div class="card">
       <h2>资料包 · 订阅更新</h2>
-      <p>每周更新的亏本成交榜、新的分租/翻新案例和计算结果，先发给订阅者。资料包里有：</p>
+      <p>新案例核实后会更新到本站，并先发给订阅者。资料包里有下面三份可打印清单，点开就能看，也能直接打印：</p>
       <ul class="pack-list">
-        <li>抄底检查清单：买之前先核对的 10 个问题</li>
-        <li>分租合法性清单：独立入口、消防、分区、市政核实五项</li>
-        <li>翻新验收清单：比价、验收、留尾款怎么做</li>
-        <li>本页三个计算器的可打印算账表</li>
+        <li><a href="pack/buying-checklist.html">抄底检查清单</a>：买之前先核对的 10 个问题</li>
+        <li><a href="pack/split-rental-checklist.html">分租合法性清单</a>：独立入口、消防、分区、市政核实五项</li>
+        <li><a href="pack/flip-checklist.html">翻新验收清单</a>：比价、验收、留尾款怎么做</li>
+        <li>本页计算器的算账表：直接用浏览器打印本页即可，打印版已去掉导航和表单。</li>
       </ul>
+      <p>想要更完整的买房和续约工具，可以去 <a href="https://property-playbooks.vercel.app/free-checklist" target="_blank" rel="noopener">免费版 10 项检查清单</a>，或在 <a href="https://property-playbooks.vercel.app/" target="_blank" rel="noopener">买房工具包页面</a>登记完整版上线通知。完整版结账链接尚未上线，页面上写的是什么就是什么，不会提前收款。</p>
       <form id="subscribe-form" class="subscribe" action="https://buttondown.com/api/emails/embed-subscribe/xiong" method="post" target="_blank">
         <input id="sub-email" name="email" type="email" placeholder="你的邮箱地址" aria-label="邮箱地址" required>
         <input type="hidden" name="embed" value="1">
         <button class="btn" type="submit">免费订阅</button>
       </form>
       <p class="form-msg" id="sub-msg" aria-live="polite"></p>
-      <p class="small">订阅由 Buttondown 处理：提交后请去邮箱点确认链接，确认后才算订阅成功。也可以直接在北美雄吉 YouTube 频道留言。</p>
+      <p class="small">订阅由 Buttondown 处理：提交后请去邮箱点确认链接，确认后才算订阅成功。每封邮件底部都有退订链接，随时可退，邮箱不会被出售或转给第三方做广告。详情见<a href="privacy.html">隐私说明</a>。有问题也可以写信到 <a href="mailto:xiongjibro@gmail.com">xiongjibro@gmail.com</a>，或在北美雄吉 YouTube 频道留言。</p>
     </div>
   </section>
 
@@ -232,9 +260,9 @@
 <footer>
   <div class="wrap">
     <h3>GTA投资实验室 · 北美雄吉出品</h3>
-    <p>数据来源：HouseSigma（PROPTX），截至 2026 年 10 月；房价与租金以页面显示为准，月供为统一示例假设下的测算，不是银行报价。CDR 换算因子每日浮动，仅为约算值。</p>
+    <p>数据来源：HouseSigma（PROPTX），截至 2026 年 10 月；房价与租金以页面显示为准，月供按加拿大半年复利、统一示例假设测算，不是银行报价。CDR 换算因子每日浮动，仅为约算值，请以 CIBC 官网为准。</p>
     <p><strong>免责声明：本站内容仅供参考，不是投资建议、法律或税务意见。</strong>买卖房产与证券前，请咨询持牌经纪、贷款顾问、律师与会计师。数据可能有误，请自行核实。</p>
-    <p class="small">© 2026 GTA投资实验室 · <a href="https://github.com/VectorMotionX1/gta-invest">github.com/VectorMotionX1/gta-invest</a> · 数据文件：<a href="data.json">data.json</a></p>
+    <p class="small">© 2026 GTA投资实验室 · YouTube：北美雄吉 @xiongjibro · <a href="mailto:xiongjibro@gmail.com">xiongjibro@gmail.com</a> · <a href="https://property-playbooks.vercel.app/" target="_blank" rel="noopener">买房工具包</a> · <a href="privacy.html">隐私说明</a> · <a href="https://github.com/VectorMotionX1/gta-invest">github.com/VectorMotionX1/gta-invest</a> · 数据文件：<a href="data.json">data.json</a></p>
   </div>
 </footer>
 
