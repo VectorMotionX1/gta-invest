@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA投资实验室 — 北美雄吉出品 | 多伦多房产抄底、分租与翻新算账</title>
+<meta name="description" content="北美雄吉出品的 GTA 房产投资工具站：7 套亏本成交实录、分租回报计算器、翻新转手计算器、美股 CDR 换算器。数据来自 HouseSigma，截至 2026 年 10 月。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">GTA投资实验室 <span>· 北美雄吉</span></div>
+    <nav>
+      <a href="#loss">亏本成交榜</a>
+      <a href="#split">分租计算器</a>
+      <a href="#flip">翻新计算器</a>
+      <a href="#cdr">CDR 换算</a>
+      <a href="#pack">资料包</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>GTA投资实验室<span class="blue-line">先算现金流，再谈房价涨不涨</span></h1>
+    <p class="lede">北美雄吉出品。弱市里不赌“到底了”，只算三笔账：这套房亏了多少、分租能不能扛住月供、翻新价差里有多少是真利润。数据来自真实成交，不是预测。</p>
+    <div class="cta-row">
+      <a class="btn" href="#loss">看 7 套亏本成交</a>
+      <a class="btn ghost" href="#split">算我的分租账</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>7 套</b><span>近期成交，全部亏本</span></div>
+      <div class="stat"><b>−$1,530,000</b><span>合计买卖价差（加元）</span></div>
+      <div class="stat"><b>−44%</b><span>最惨跌幅 · Oshawa</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- (a) 亏本成交榜 -->
+  <section id="loss">
+    <div class="card">
+      <h2>亏本成交榜 <span class="tag">抄底失败 · 7 套实录</span></h2>
+      <p>以为跌到底了才下手，结果底下面还有底。这 7 套房最近一次卖出全部集中在 2026 年 9 月和 10 月，买入到卖出的间隔最短 8 个月、最长 28 个月，平均约 17 个月。点击表头可以排序。</p>
+      <div class="banner">
+        <b>7 套房合计亏了 $1,530,000 加元</b>
+        <p>最少亏 $61,000（8 个月），最多亏 $414,999（22 个月，跌幅 44%）。</p>
+      </div>
+      <div class="table-scroll">
+        <table id="loss-table">
+          <thead>
+            <tr>
+              <th>房子 ↕</th><th>买入价 ↕</th><th>卖出价 ↕</th><th>亏损 ↕</th><th>跌幅 ↕</th><th>持有 ↕</th><th>买入时间</th><th>卖出时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="addr">Oshawa · 1500 Simcoe St N（独立屋）</td><td data-sort-val="949999">$949,999</td><td data-sort-val="535000">$535,000</td><td class="neg" data-sort-val="-414999">−$414,999</td><td class="neg" data-sort-val="-44">−44%</td><td data-sort-val="22">22 个月</td><td>2024-11</td><td>2026-09-09</td></tr>
+            <tr><td class="addr">Scugog · 1130 Scugog 14 Line（独立屋）</td><td data-sort-val="1170000">$1,170,000</td><td data-sort-val="810000">$810,000</td><td class="neg" data-sort-val="-360000">−$360,000</td><td class="neg" data-sort-val="-31">−31%</td><td data-sort-val="28">28 个月</td><td>2024-06</td><td>2026-10-18</td></tr>
+            <tr><td class="addr">Ajax · 37 Lincoln St（独立屋）</td><td data-sort-val="880000">$880,000</td><td data-sort-val="675000">$675,000</td><td class="neg" data-sort-val="-205000">−$205,000</td><td class="neg" data-sort-val="-23">−23%</td><td data-sort-val="14">14 个月</td><td>2025-08</td><td>2026-10-13</td></tr>
+            <tr><td class="addr">Mississauga · 2610-4080 Living Arts Dr（公寓）</td><td data-sort-val="677500">$677,500</td><td data-sort-val="480000">$480,000</td><td class="neg" data-sort-val="-197500">−$197,500</td><td class="neg" data-sort-val="-29">−29%</td><td data-sort-val="17">17 个月</td><td>2025-04</td><td>2026-09-30</td></tr>
+            <tr><td class="addr">Toronto · 404-159 Wellesley St E（公寓）</td><td data-sort-val="650000">$650,000</td><td data-sort-val="491000">$491,000</td><td class="neg" data-sort-val="-159000">−$159,000</td><td class="neg" data-sort-val="-24">−24%</td><td data-sort-val="14">14 个月</td><td>2025-08</td><td>2026-10-09</td></tr>
+            <tr><td class="addr">Mississauga · 1408-2155 Burnhamthorpe Rd W（公寓）</td><td data-sort-val="520000">$520,000</td><td data-sort-val="387500">$387,500</td><td class="neg" data-sort-val="-132500">−$132,500</td><td class="neg" data-sort-val="-25">−25%</td><td data-sort-val="18">18 个月</td><td>2025-03</td><td>2026-09-04</td></tr>
+            <tr><td class="addr">Toronto · PH2-2130 Weston Rd（公寓）</td><td data-sort-val="315000">$315,000</td><td data-sort-val="254000">$254,000</td><td class="neg" data-sort-val="-61000">−$61,000</td><td class="neg" data-sort-val="-19">−19%</td><td data-sort-val="8">8 个月</td><td>2026-01</td><td>2026-09-11</td></tr>
+            <tr class="total"><td>合计（7 套）</td><td>—</td><td>—</td><td class="neg">−$1,530,000</td><td>—</td><td>平均约 17 个月</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">数据来源：HouseSigma（PROPTX），加元，数据截至 2026 年 10 月。亏损仅为买卖价差，未计中介费、土地转让税、律师费和持有期利息，真实亏损只会更大。逐项亏损相加为 $1,529,999，标题的 $1,530,000 为脚本原标题的四舍五入约数。挂牌价与在市天数见 <a href="data.json">data.json</a>。</p>
+      <div class="callout">
+        <strong>三个共同点：</strong>① 把“跌了很多”当成“跌到底了”；② 只算房价，不算持有成本；③ 把流动性当成理所当然。抄底失败不是运气差，是方法错了。
+      </div>
+    </div>
+  </section>
+
+  <!-- (b) 分租回报计算器 -->
+  <section id="split">
+    <div class="card">
+      <h2>分租回报计算器 <span class="tag">整租 vs 分租</span></h2>
+      <p>同一套房子、同一份月供，整租是一份租金，分租是两份。先算持有成本，再看租金能不能扛住。下方预填 Scarborough 真实案例，点按钮可切换另外两套。</p>
+
+      <div class="preset-row">
+        <button class="preset active" type="button" data-preset="scarborough">Scarborough 31A Laurel Ave · $881,000</button>
+        <button class="preset" type="button" data-preset="burlington">Burlington 2379 Maryvale Ct · $766,000</button>
+        <button class="preset" type="button" data-preset="markham">Markham 23 Southdale Dr · $1,450,000（未售出）</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <label for="sp-price">房价（加元）</label>
+          <input id="sp-price" type="number" value="881000" min="0" step="1000">
+          <label for="sp-down">首付（%）</label>
+          <input id="sp-down" type="number" value="20" min="0" max="100" step="1">
+          <label for="sp-rate">示例利率（% / 年）</label>
+          <input id="sp-rate" type="number" value="4.79" min="0" step="0.01">
+          <label for="sp-years">摊还年限（年）</label>
+          <input id="sp-years" type="number" value="25" min="1" max="30" step="1">
+          <label for="sp-whole">整租租金（$/月）</label>
+          <input id="sp-whole" type="number" value="3352" min="0" step="1">
+          <label for="sp-up">分租 · 楼上（$/月）</label>
+          <input id="sp-up" type="number" value="2999" min="0" step="1">
+          <label for="sp-down-rent">分租 · 楼下（$/月）</label>
+          <input id="sp-down-rent" type="number" value="2149" min="0" step="1">
+          <label for="sp-tax">地税（$/年）</label>
+          <input id="sp-tax" type="number" value="3589" min="0" step="1">
+          <label for="sp-ins">保险（$/月）</label>
+          <input id="sp-ins" type="number" value="150" min="0" step="1">
+        </div>
+        <div class="results" aria-live="polite">
+          <h3>算账结果</h3>
+          <dl>
+            <div class="row"><dt>贷款额</dt><dd id="sp-loan">—</dd></div>
+            <div class="row"><dt>月供</dt><dd id="sp-payment">—</dd></div>
+            <div class="row"><dt>持有成本 / 月（月供＋地税＋保险）</dt><dd id="sp-holding" class="big">—</dd></div>
+            <div class="row"><dt>整租现金流 / 月</dt><dd id="sp-whole-cf">—</dd></div>
+            <div class="row"><dt>分租现金流 / 月</dt><dd id="sp-split-cf">—</dd></div>
+            <div class="row"><dt>分租比整租多 / 月</dt><dd id="sp-diff">—</dd></div>
+          </dl>
+          <p class="note">Scarborough 预填结果应约为：月供 $4,034，持有成本 $4,484，整租 −$1,132，分租 +$664，差额 $1,796。扣掉 5% 空置预留（约 $257）后，分租约剩 $407，再留维修费就基本打平——不是暴利，是方向变了。</p>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <div class="case">
+          <h3>Scarborough · 31A Laurel Ave</h3>
+          <p>2026-10-03 以 <b>$881,000</b> 售出；2026-04 曾成交 $570,888，约半年涨约 54%。合法两单元，楼上 3 房 2 卫、地下室 2 房 1 卫，独立入口。</p>
+          <p>分租挂牌 $2,999＋$2,149＝<span class="big">$5,148</span>，整租估算 $3,352，地税 $3,589/年。</p>
+          <p class="small">结论：翻新＋分门，两条线合在一起，账能算过来，但安全边际很薄。$5,148 是挂牌要价，不是已签合同。</p>
+        </div>
+        <div class="case">
+          <h3>Burlington · 2379 Maryvale Ct</h3>
+          <p>2026-10-16 以 <b>$766,000</b> 售出；2026-05 曾成交 $540,000，约 5 个月涨约 42%。3 房镇屋，成品地下室。</p>
+          <p>整租估算 <b>$3,156</b>，持有成本约 $3,913，整租现金流 <span class="big">−$757/月</span>。地税 $3,420/年。</p>
+          <p class="small">结论：纯翻新转手。租金没跟着翻新价涨，按翻新价买来收租算不过。</p>
+        </div>
+        <div class="case">
+          <h3>Markham · 23 Southdale Dr</h3>
+          <p><b>$1,450,000</b> 挂牌 137 天后终止，<b>未售出</b>；此前 $1,625,000 和 $1,599,000 均过期。</p>
+          <p>已租出 $3,100＋$2,500＝<span class="big">$5,600</span>，整租估算 $3,570；持有成本约 $7,314，分租仍倒贴 <span class="big">−$1,714/月</span>。</p>
+          <p class="small">结论：分门能把亏损砍掉一半多，但救不了买贵的价格。下层未写明已是合法套间，须向市政核实。</p>
+        </div>
+      </div>
+      <p class="small">测算假设（全站统一）：20% 首付、示例利率 4.79%、25 年摊还。月供为统一假设下的测算，<strong>不是银行报价</strong>；保险按 Scarborough $150、Burlington $120、Markham $200 估算。租金未扣空置和维修时先算毛账。分门出租前请核实合法性、分区与消防要求，并咨询专业人士。</p>
+    </div>
+  </section>
+
+  <!-- (c) 翻新转手计算器 -->
+  <section id="flip">
+    <div class="card">
+      <h2>翻新转手计算器 <span class="tag">毛差 ≠ 净利润</span></h2>
+      <p>预填 Burlington 真实案例：2026-05 以 $540,000 成交，2026-10-16 以 $766,000 售出，毛差 $226,000，涨幅约 42%。请把装修费和持有/中介/税费填进去，再看真利润。</p>
+      <div class="grid">
+        <div>
+          <label for="fl-buy">买入价（加元）</label>
+          <input id="fl-buy" type="number" value="540000" min="0" step="1000">
+          <label for="fl-reno">装修费（加元）</label>
+          <input id="fl-reno" type="number" value="0" min="0" step="1000">
+          <label for="fl-costs">持有 / 中介 / 税费等（加元）</label>
+          <input id="fl-costs" type="number" value="0" min="0" step="1000">
+          <label for="fl-sell">卖出价（加元）</label>
+          <input id="fl-sell" type="number" value="766000" min="0" step="1000">
+        </div>
+        <div class="results" aria-live="polite">
+          <h3>算账结果</h3>
+          <dl>
+            <div class="row"><dt>买卖毛差</dt><dd id="fl-gross">—</dd></div>
+            <div class="row"><dt>毛差占买入价</dt><dd id="fl-gross-pct">—</dd></div>
+            <div class="row"><dt>总投入（买入＋装修＋其他）</dt><dd id="fl-total">—</dd></div>
+            <div class="row"><dt>净利润</dt><dd id="fl-net" class="big">—</dd></div>
+            <div class="row"><dt>净回报率（净利 ÷ 总投入）</dt><dd id="fl-return">—</dd></div>
+          </dl>
+          <p class="note">装修是真换了厨房卫浴、屋顶、暖通和电路，还是只刷了漆、换了地板、摆了家具拍照？有没有装修许可？同区没翻新的同类房卖多少？答不上来，就是在为别人的利润买单。12 个月内转手可能适用翻新转手规则，利润按生意收入计税，具体问会计师。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (d) CDR 换算器 -->
+  <section id="cdr">
+    <div class="card">
+      <h2>美股 CDR 换算器 <span class="tag">加元约算</span></h2>
+      <p>在加拿大用加元买美股，不用换美元：CDR 是按比例持有美股的加元计价凭证。输入美股价格，换算约算的 CDR 加元价。</p>
+      <div class="grid">
+        <div>
+          <label for="cdr-ticker">股票</label>
+          <select id="cdr-ticker">
+            <option value="GOOG">GOOG · Alphabet / Google（因子约 0.1593）</option>
+            <option value="NVDA">NVDA · NVIDIA（因子约 0.223）</option>
+            <option value="ISRG">ISRG · Intuitive Surgical（因子约 0.0517）</option>
+            <option value="SPCX">SPCX（因子约 0.1662 · 无 CDR，仅参考）</option>
+          </select>
+          <label for="cdr-usd">美股价格（美元）</label>
+          <input id="cdr-usd" type="number" placeholder="例如 280" min="0" step="0.01">
+        </div>
+        <div class="results" aria-live="polite">
+          <h3>换算结果</h3>
+          <dl>
+            <div class="row"><dt>约算 CDR 价</dt><dd id="cdr-out" class="big">—</dd></div>
+          </dl>
+          <p class="note" id="cdr-note">因子约 0.1593，每日浮动，仅为约算值。CDR 价格还受汇率对冲、费用等因素影响。</p>
+          <p class="note">CDR 持有人没有直接投票权和代理权，但可在 cdr.cibc.com 提交投票指示，CIBC 会尽力按指示投票；股息以加元发放，扣 15% 美国预扣税后到账。CDR 在多伦多交易时间 9:30–16:00 交易，美股盘后价不能直接交易。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (e) 资料包 / 订阅 -->
+  <section id="pack">
+    <div class="card">
+      <h2>资料包 · 订阅更新</h2>
+      <p>每周更新的亏本成交榜、新的分租/翻新案例和计算结果，先发给订阅者。资料包里有：</p>
+      <ul class="pack-list">
+        <li>抄底检查清单：买之前先核对的 10 个问题</li>
+        <li>分租合法性清单：独立入口、消防、分区、市政核实五项</li>
+        <li>翻新验收清单：比价、验收、留尾款怎么做</li>
+        <li>本页三个计算器的可打印算账表</li>
+      </ul>
+      <form id="subscribe-form" class="subscribe" action="#" method="post">
+        <input id="sub-email" type="email" placeholder="你的邮箱地址" aria-label="邮箱地址" required>
+        <button class="btn" type="submit">免费订阅</button>
+      </form>
+      <p class="form-msg" id="sub-msg" aria-live="polite"></p>
+      <p class="small">本站为静态网站，无后端服务器，表单为占位订阅，不会把邮箱发到任何服务器。正式上线后请接入邮件服务（如 Buttondown / Mailchimp）再启用。也可以直接在北美雄吉 YouTube 频道留言。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>GTA投资实验室 · 北美雄吉出品</h3>
+    <p>数据来源：HouseSigma（PROPTX），截至 2026 年 10 月；房价与租金以页面显示为准，月供为统一示例假设下的测算，不是银行报价。CDR 换算因子每日浮动，仅为约算值。</p>
+    <p><strong>免责声明：本站内容仅供参考，不是投资建议、法律或税务意见。</strong>买卖房产与证券前，请咨询持牌经纪、贷款顾问、律师与会计师。数据可能有误，请自行核实。</p>
+    <p class="small">© 2026 GTA投资实验室 · <a href="https://github.com/VectorMotionX1/gta-invest">github.com/VectorMotionX1/gta-invest</a> · 数据文件：<a href="data.json">data.json</a></p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

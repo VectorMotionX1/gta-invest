@@ -1,0 +1,110 @@
+/* GTA投资实验室 — 北美雄吉出品
+   Channel colours: yellow/blue headlines, red stat banners. Clean, mobile-first. */
+:root{
+  --blue:#0b3d91; --blue-dark:#082c6b; --yellow:#ffd400; --yellow-soft:#fff3a0;
+  --red:#c8102e; --red-dark:#9e0c24; --ink:#1a1a1a; --muted:#5b6470;
+  --line:#e3e6ea; --bg:#f6f7f9; --card:#ffffff; --green:#0b7a3e;
+  --radius:12px; --max:1020px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:16px}
+a{color:var(--blue)}
+h1,h2,h3{line-height:1.3;margin:0 0 .5rem}
+h2{font-size:1.45rem}
+h3{font-size:1.08rem}
+p{margin:.4rem 0 .8rem}
+.small{font-size:.85rem;color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+
+/* Header / hero */
+.topbar{background:var(--blue);color:#fff}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.02em}
+.brand span{color:var(--yellow)}
+.topbar nav a{color:#fff;text-decoration:none;margin-left:14px;font-size:.9rem;opacity:.92}
+.topbar nav a:hover{opacity:1;text-decoration:underline}
+.hero{background:var(--blue);color:#fff;padding:34px 0 40px}
+.hero h1{font-size:2.15rem;color:var(--yellow);text-shadow:0 2px 0 rgba(0,0,0,.18)}
+.hero h1 .blue-line{display:block;color:#fff;font-size:1.15rem;margin-top:6px}
+.hero p.lede{font-size:1.05rem;max-width:640px;opacity:.95}
+.hero .cta-row{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--yellow);color:#111;padding:10px 18px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.btn.small{padding:7px 13px;font-size:.9rem}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.stat{background:var(--red);border-radius:var(--radius);padding:14px;text-align:center}
+.stat b{display:block;font-size:1.5rem;line-height:1.15}
+.stat span{font-size:.82rem;opacity:.95}
+
+/* Sections / cards */
+section{padding:28px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+.card h2{color:var(--blue)}
+.card h2 .tag{display:inline-block;background:var(--yellow);color:#111;font-size:.72rem;padding:2px 8px;border-radius:999px;vertical-align:middle;margin-left:8px}
+.banner{background:var(--red);color:#fff;border-radius:var(--radius);padding:14px 16px;margin:14px 0}
+.banner b{font-size:1.35rem}
+.banner p{margin:.2rem 0 0;opacity:.95}
+.callout{background:#fff8d6;border:1px solid #f0d95a;border-radius:var(--radius);padding:12px 14px;margin:12px 0}
+.callout.warn{background:#fdecec;border-color:#f3b0b0}
+
+/* Tables */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:760px}
+th,td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{cursor:pointer;background:#eef2f9;color:var(--blue);user-select:none}
+th:hover{background:#dfe8f7}
+td.neg{color:var(--red);font-weight:700}
+td.addr{font-weight:600}
+tr.total td{font-weight:800;background:#fff3f3;border-top:2px solid var(--red)}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.case{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:#fff}
+.case h3{color:var(--blue);font-size:1rem}
+.case .big{font-size:1.25rem;font-weight:800;color:var(--red)}
+.case .ok{color:var(--green)}
+
+/* Calculators */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+label{display:block;font-size:.88rem;font-weight:600;margin:10px 0 4px}
+input,select{width:100%;padding:10px 11px;border:1px solid #c9d0d8;border-radius:8px;font-size:1rem;background:#fff}
+input:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.preset{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem}
+.preset.active,.preset:hover{background:var(--blue);color:#fff}
+.results{background:#eef2f9;border-radius:var(--radius);padding:16px}
+.results dl{margin:0}
+.results .row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #dbe2ec}
+.results .row:last-child{border-bottom:0}
+.results dt{color:var(--muted)}
+.results dd{margin:0;font-weight:700;text-align:right}
+.results dd.neg{color:var(--red)}
+.results dd.pos{color:var(--green)}
+.results dd.big{font-size:1.25rem}
+.note{font-size:.85rem;color:var(--muted)}
+
+/* Pack / subscribe */
+.pack-list{margin:.6rem 0;padding-left:1.2rem}
+.pack-list li{margin:.35rem 0}
+form.subscribe{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+form.subscribe input{flex:1;min-width:220px}
+.form-msg{margin-top:10px;font-weight:600;color:var(--green)}
+
+/* Footer */
+footer{background:#111827;color:#d1d5db;padding:28px 0;margin-top:36px;font-size:.88rem}
+footer h3{color:var(--yellow)}
+footer a{color:#fff}
+
+@media (max-width:760px){
+  .hero h1{font-size:1.75rem}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stat b{font-size:1.15rem}
+  .grid{grid-template-columns:1fr}
+  .case-grid{grid-template-columns:1fr}
+  .topbar nav a{margin-left:10px}
+}
+@media (max-width:480px){
+  .hero-stats{grid-template-columns:1fr}
+  body{font-size:15px}
+}

@@ -1,0 +1,240 @@
+{
+  "cdr_factors": [
+    {
+      "factor": 0.1593,
+      "has_cdr": true,
+      "name": "Alphabet / Google",
+      "ticker": "GOOG"
+    },
+    {
+      "factor": 0.223,
+      "has_cdr": true,
+      "name": "NVIDIA",
+      "ticker": "NVDA"
+    },
+    {
+      "factor": 0.0517,
+      "has_cdr": true,
+      "name": "Intuitive Surgical",
+      "ticker": "ISRG"
+    },
+    {
+      "factor": 0.1662,
+      "has_cdr": false,
+      "name": "SPCX",
+      "note": "SPCX 没有 CDR，此处仅为参考换算",
+      "ticker": "SPCX"
+    }
+  ],
+  "flip_case": {
+    "address": "2379 Maryvale Ct",
+    "buy_date": "2026-05",
+    "buy_price": 540000,
+    "change_pct": 42,
+    "city": "Burlington",
+    "gross_spread": 226000,
+    "id": "burlington-maryvale-flip",
+    "note": "价差为毛差，不是净利润。装修费、持有成本、中介费和税费需另行扣除；12个月内转手在加拿大可能适用翻新转手规则，具体以会计师意见为准。",
+    "sell_date": "2026-10-16",
+    "sell_price": 766000
+  },
+  "loss_cases": [
+    {
+      "address": "1500 Simcoe St N",
+      "buy_date": "2024-11",
+      "buy_price": 949999,
+      "change_pct": -44,
+      "city": "Oshawa",
+      "days_on_market": 7,
+      "holding_months": 22,
+      "id": "oshawa-simcoe",
+      "list_price": 575000,
+      "loss": -414999,
+      "sell_date": "2026-09-09",
+      "sell_price": 535000,
+      "type": "独立屋"
+    },
+    {
+      "address": "1130 Scugog 14 Line",
+      "buy_date": "2024-06",
+      "buy_price": 1170000,
+      "change_pct": -31,
+      "city": "Scugog",
+      "days_on_market": 23,
+      "holding_months": 28,
+      "id": "scugog-line14",
+      "list_price": 989000,
+      "loss": -360000,
+      "sell_date": "2026-10-18",
+      "sell_price": 810000,
+      "type": "独立屋"
+    },
+    {
+      "address": "37 Lincoln St",
+      "buy_date": "2025-08",
+      "buy_price": 880000,
+      "change_pct": -23,
+      "city": "Ajax",
+      "days_on_market": 49,
+      "holding_months": 14,
+      "id": "ajax-lincoln",
+      "list_price": 749000,
+      "loss": -205000,
+      "sell_date": "2026-10-13",
+      "sell_price": 675000,
+      "type": "独立屋"
+    },
+    {
+      "address": "2610-4080 Living Arts Dr",
+      "buy_date": "2025-04",
+      "buy_price": 677500,
+      "change_pct": -29,
+      "city": "Mississauga",
+      "days_on_market": 62,
+      "holding_months": 17,
+      "id": "mississauga-living-arts",
+      "list_price": 509900,
+      "loss": -197500,
+      "sell_date": "2026-09-30",
+      "sell_price": 480000,
+      "type": "公寓"
+    },
+    {
+      "address": "404-159 Wellesley St E",
+      "buy_date": "2025-08",
+      "buy_price": 650000,
+      "change_pct": -24,
+      "city": "Toronto",
+      "days_on_market": 36,
+      "holding_months": 14,
+      "id": "toronto-wellesley",
+      "list_price": 499000,
+      "loss": -159000,
+      "sell_date": "2026-10-09",
+      "sell_price": 491000,
+      "type": "公寓"
+    },
+    {
+      "address": "1408-2155 Burnhamthorpe Rd W",
+      "buy_date": "2025-03",
+      "buy_price": 520000,
+      "change_pct": -25,
+      "city": "Mississauga",
+      "days_on_market": 10,
+      "holding_months": 18,
+      "id": "mississauga-burnhamthorpe",
+      "list_price": 419000,
+      "loss": -132500,
+      "sell_date": "2026-09-04",
+      "sell_price": 387500,
+      "type": "公寓"
+    },
+    {
+      "address": "PH2-2130 Weston Rd",
+      "buy_date": "2026-01",
+      "buy_price": 315000,
+      "change_pct": -19,
+      "city": "Toronto",
+      "days_on_market": 84,
+      "holding_months": 8,
+      "id": "toronto-weston",
+      "list_price": 269000,
+      "loss": -61000,
+      "sell_date": "2026-09-11",
+      "sell_price": 254000,
+      "type": "公寓"
+    }
+  ],
+  "loss_total": -1530000,
+  "meta": {
+    "currency": "CAD",
+    "data_as_of": "2026-10",
+    "language": "zh-CN",
+    "mortgage_assumption": {
+      "amortization_years": 25,
+      "down_payment_pct": 20,
+      "note": "统一示例假设，不是银行报价。实际利率、保险以银行及保险公司报价为准。",
+      "rate_pct": 4.79
+    },
+    "name_zh": "GTA投资实验室",
+    "notes": [
+      "抄底失败7套房的亏损仅为买卖价差，未计中介费、土地转让税、律师费和持有期利息，真实亏损只会更大。",
+      "分租案例中租金可信度不同：Markham $5,600 为已租出价，Scarborough $5,148 为挂牌要价，Burlington $3,156 为平台估算价。",
+      "CDR换算因子每日浮动，以下因子为约算值，仅供参考。",
+      "7套房逐项亏损相加为 $1,529,999，脚本与本站标题的 $1,530,000 为四舍五入后的约数。"
+    ],
+    "producer": "北美雄吉",
+    "site": "gta-invest",
+    "source": "HouseSigma (PROPTX)"
+  },
+  "split_rental_cases": [
+    {
+      "address": "31A Laurel Ave",
+      "city": "Scarborough",
+      "id": "scarborough-laurel",
+      "insurance_per_month": 150,
+      "list_price": 885000,
+      "prior_change_pct": 54,
+      "prior_date": "2026-04",
+      "prior_price": 570888,
+      "sell_date": "2026-10-03",
+      "sell_price": 881000,
+      "split_rent_down": 2149,
+      "split_rent_note": "挂牌要价",
+      "split_rent_total": 5148,
+      "split_rent_up": 2999,
+      "status": "sold",
+      "structure": "楼上3房2卫，地下室2房1卫，独立入口",
+      "tax_per_year": 3589,
+      "type": "独立屋平房 · 合法两单元",
+      "whole_rent_estimate": 3352,
+      "whole_rent_note": "平台整租估算"
+    },
+    {
+      "address": "2379 Maryvale Ct",
+      "city": "Burlington",
+      "id": "burlington-maryvale",
+      "insurance_per_month": 120,
+      "list_price": 774998,
+      "prior_change_pct": 42,
+      "prior_date": "2026-05",
+      "prior_price": 540000,
+      "sell_date": "2026-10-16",
+      "sell_price": 766000,
+      "split_rent_down": null,
+      "split_rent_note": "无分租记录；本案例重点为翻新转手",
+      "split_rent_total": null,
+      "split_rent_up": null,
+      "status": "sold",
+      "structure": "3房，成品地下室，无独立入口说明",
+      "tax_per_year": 3420,
+      "type": "镇屋 · 成品地下室",
+      "whole_rent_estimate": 3156,
+      "whole_rent_note": "平台整租估算"
+    },
+    {
+      "address": "23 Southdale Dr",
+      "city": "Markham",
+      "days_on_market": 137,
+      "id": "markham-southdale",
+      "insurance_per_month": 200,
+      "list_price": 1450000,
+      "prior_listings": [
+        "$1,625,000 过期",
+        "$1,599,000 过期"
+      ],
+      "sell_date": null,
+      "sell_price": 1450000,
+      "split_rent_down": 2500,
+      "split_rent_note": "已租出价",
+      "split_rent_total": 5600,
+      "split_rent_up": 3100,
+      "status": "terminated_unsold",
+      "structure": "地下有独立入口，页面表述为可改成私人出租套间，未写明已是合法套间",
+      "tax_per_year": 5692,
+      "type": "独立屋 · 3+2房",
+      "whole_rent_estimate": 3570,
+      "whole_rent_note": "平台整租估算"
+    }
+  ]
+}
