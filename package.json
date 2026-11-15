@@ -1,0 +1,1 @@
+{"description":"GTA投资实验室：北美雄吉出品的中文 GTA 房产投资工具站（纯静态，无外部依赖）","license":"MIT","name":"gta-invest","private":true,"scripts":{"test":"node --check app.js && node test-calc.js && node validate-data.js"},"version":"1.1.0"}
