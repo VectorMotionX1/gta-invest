@@ -50,4 +50,13 @@ const sum = data.loss_cases.reduce((t, x) => t + x.loss, 0);
 assert.strictEqual(sum, -1529999, 'loss cases sum');
 // Headline total $1,530,000 in the scripts is the rounded figure; see data.json meta.notes.
 console.log('PASS loss cases sum = -1529999 (headline $1,530,000 is rounded)');
+// Subscribe payload: locked contract with property-playbooks /api/signup.
+// See docs/leads.md. Changing product/source breaks list segmentation.
+assert.strictEqual(c.SUBSCRIBE_ENDPOINT, 'https://property-playbooks.vercel.app/api/signup', 'subscribe endpoint');
+assert.deepStrictEqual(
+  c.subscribePayload('  Test@Example.com '),
+  { email: 'Test@Example.com', name: null, product: 'gta-invest', source: 'gta-invest-subscribe' },
+  'subscribe payload trims email and carries locked product/source'
+);
+console.log('PASS subscribe payload contract (endpoint + product/source)');
 console.log('ALL CALCULATOR CHECKS PASSED');

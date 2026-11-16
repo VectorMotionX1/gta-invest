@@ -87,6 +87,20 @@ function fmtPct(n, decimals) {
    only in data.json as a reference row; it must NOT appear in the selector. */
 var CDR_FACTORS = { GOOG: 0.1593, NVDA: 0.223, ISRG: 0.0517 };
 
+/* Subscribe: this site writes to the shared Supabase `leads` table through
+   the property-playbooks signup API (see docs/leads.md). The API holds the
+   Supabase credentials server-side; this repo must never contain a
+   Supabase URL/key or a MailerLite API key. product/source values are
+   locked in DECISIONS.md — do not change them without recording a new
+   decision in BOTH repos. */
+var SUBSCRIBE_ENDPOINT = 'https://property-playbooks.vercel.app/api/signup';
+var SUBSCRIBE_PRODUCT = 'gta-invest';
+var SUBSCRIBE_SOURCE = 'gta-invest-subscribe';
+
+function subscribePayload(email) {
+  return { email: String(email || '').trim(), name: null, product: SUBSCRIBE_PRODUCT, source: SUBSCRIBE_SOURCE };
+}
+
 var SPLIT_PRESETS = {
   scarborough: { label: 'Scarborough 31A Laurel Ave', price: 881000, downPct: 20, ratePct: 4.79, years: 25, wholeRent: 3352, splitUp: 2999, splitDown: 2149, taxPerYear: 3589, insurancePerMonth: 150, condoFeePerMonth: 0, vacancyPct: 0, maintenancePerMonth: 0, note: '分租 $5,148 为挂牌要价，不是已签合同。先看毛账，再自己填空置和维修预留看净账。' },
   burlington: { label: 'Burlington 2379 Maryvale Ct', price: 766000, downPct: 20, ratePct: 4.79, years: 25, wholeRent: 3156, splitUp: 0, splitDown: 0, taxPerYear: 3420, insurancePerMonth: 120, condoFeePerMonth: 0, vacancyPct: 0, maintenancePerMonth: 0, note: '本案例无分租记录，分租栏为 0，仅供你自己试算；这套的重点是翻新转手，请看翻新计算器。' },
@@ -180,6 +194,48 @@ function sortLossTable(th) {
   if (total) tbody.appendChild(total);
 }
 
+function initSubscribe() {
+  var form = document.getElementById('subscribe-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var emailEl = document.getElementById('sub-email');
+    var msg = document.getElementById('sub-msg');
+    var btn = form.querySelector('button[type="submit"]');
+    var email = emailEl ? emailEl.value.trim() : '';
+    if (!email || email.indexOf('@') < 0) {
+      if (msg) msg.textContent = '请填写有效的邮箱地址。';
+      return;
+    }
+    if (btn) btn.disabled = true;
+    if (msg) msg.textContent = '提交中…';
+    fetch(SUBSCRIBE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(subscribePayload(email))
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        return { ok: res.ok, data: data };
+      });
+    }).then(function (r) {
+      if (r.ok) {
+        if (msg) msg.textContent = '订阅成功，新案例核实后会发邮件通知你。';
+        if (emailEl) emailEl.value = '';
+      } else if (r.data && r.data.error === 'signup_not_configured') {
+        if (msg) msg.textContent = '订阅尚未接通数据库，正在准备中，请稍后再试。';
+      } else if (r.data && r.data.error === 'invalid_email') {
+        if (msg) msg.textContent = '邮箱格式不对，请检查后重试。';
+      } else {
+        if (msg) msg.textContent = '订阅失败，请稍后再试。';
+      }
+      if (btn) btn.disabled = false;
+    }).catch(function () {
+      if (msg) msg.textContent = '网络错误，请检查网络后重试。';
+      if (btn) btn.disabled = false;
+    });
+  });
+}
+
 function init() {
   ['sp-price', 'sp-down', 'sp-rate', 'sp-years', 'sp-whole', 'sp-up', 'sp-down-rent', 'sp-tax', 'sp-ins', 'sp-condo', 'sp-vacancy', 'sp-maint']
     .forEach(function (id) { var el = document.getElementById(id); if (el) el.addEventListener('input', renderSplit); });
@@ -194,9 +250,11 @@ function init() {
   var usd = document.getElementById('cdr-usd'), sel = document.getElementById('cdr-ticker');
   if (usd) usd.addEventListener('input', renderCdr);
   if (sel) sel.addEventListener('change', renderCdr);
-  // Subscribe form is a plain HTML POST to Buttondown (embed-subscribe/xiong).
-  // Do not intercept it with fetch/preventDefault: Buttondown may need its
-  // own confirmation/CAPTCHA flow in the new tab.
+  // Subscribe form POSTs JSON to the shared /api/signup endpoint via fetch
+  // (see initSubscribe and docs/leads.md). It must never go back to a
+  // plain form POST: the API expects JSON and returns error codes the
+  // page shows honestly instead of faking success.
+  initSubscribe();
   applyPreset('scarborough'); renderFlip(); renderCdr();
 }
 
@@ -206,5 +264,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { monthlyPayment: monthlyPayment, holdingCost: holdingCost, splitRentalCalc: splitRentalCalc, flipCalc: flipCalc, cdrCalc: cdrCalc, SPLIT_PRESETS: SPLIT_PRESETS, CDR_FACTORS: CDR_FACTORS };
+  module.exports = { monthlyPayment: monthlyPayment, holdingCost: holdingCost, splitRentalCalc: splitRentalCalc, flipCalc: flipCalc, cdrCalc: cdrCalc, SPLIT_PRESETS: SPLIT_PRESETS, CDR_FACTORS: CDR_FACTORS, subscribePayload: subscribePayload, SUBSCRIBE_ENDPOINT: SUBSCRIBE_ENDPOINT, SUBSCRIBE_PRODUCT: SUBSCRIBE_PRODUCT, SUBSCRIBE_SOURCE: SUBSCRIBE_SOURCE };
 }
