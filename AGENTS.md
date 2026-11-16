@@ -27,9 +27,15 @@ checkout is live.
 
 - Stack: pure static site, no build step, no dependencies. `index.html` +
   `styles.css` + `app.js` + `data.json`, deployed to GitHub Pages.
-- Email: Buttondown (username xiong) via plain HTML form POST. Do not
-  intercept the form with fetch. See DECISIONS.md for the unresolved
-  Buttondown vs MailerLite question.
+- Email: unified leads via the property-playbooks signup API — the form in
+  index.html POSTs JSON to https://property-playbooks.vercel.app/api/signup
+  (fetch in app.js), which writes the shared Supabase `leads` table;
+  MailerLite is the sender only. The full contract lives in docs/leads.md:
+  locked product/source values, the CORS origin, group names, and the sync
+  spec. Buttondown is retired (2026-11-15); never reintroduce it. Never put
+  a Supabase URL/key or a MailerLite API key in this repo or in browser
+  code, never call the MailerLite API from the browser, and never mix
+  gta-invest subscribers into the buyer-toolkit-waitlist group.
 
 ## 2. Task board is TASKS.md, not chat
 - TASKS.md is the only task board. Statuses: TODO / IN_PROGRESS / DONE / BLOCKED.
@@ -83,6 +89,10 @@ because all work is committed (section 6).
   publish it; record it as BLOCKED in TASKS.md instead.
 - Data rule: data.json, app.js presets/factors, and index.html copy must agree.
   validate-data.js enforces this. Do not weaken a check to make a bad change pass.
+- Subscribe contract: `npm test` checks the /api/signup endpoint and the
+  locked product/source values. If the endpoint or values change, update
+  app.js, test-calc.js, validate-data.js, docs/leads.md, and the
+  property-playbooks docs together — the contract spans both repos.
 - Product content: generic educational info only. No personalised mortgage or
   investment advice. Every page must carry the disclaimer.
 - Never publish, email a full list, change a price, or claim checkout is live

@@ -4,7 +4,7 @@
 
 - 线上地址：https://vectormotionx1.github.io/gta-invest/
 - 语言：简体中文，面向多伦多华人投资者
-- 技术：纯静态站，`index.html` + `styles.css` + `app.js`，无外部依赖，可离线打开（订阅表单除外，需联网提交到 Buttondown）
+- 技术：纯静态站，`index.html` + `styles.css` + `app.js`，无外部依赖，可离线打开（订阅表单除外，需联网提交到统一订阅接口，见 `docs/leads.md`）
 - 部署：GitHub Pages，推送到 `main` 即自动部署，部署前先跑测试（见 `.github/workflows/pages.yml`）
 
 ## 站内内容
@@ -15,7 +15,7 @@
 | 分租回报计算器 | 房价 / 首付 / 利率 / 年限 / 整租 / 分租 / 地税 / 保险 / 管理费 / 空置 / 维修 → 月供、持有成本、毛账与净账现金流 | 预填 Scarborough 案例；另有 Burlington、Markham 预设 |
 | 翻新转手计算器 | 买入价 / 装修费 / 持有税费 / 中介费 / 持有月数 / 卖出价 → 毛差、中介费、净利润、净回报率、年化回报率 | 预填 Burlington $540,000 → $766,000 |
 | 美股 CDR 换算器 | 美股价格 USD × 因子 → 约算加元 CDR 价 | GOOG ~0.1593、NVDA ~0.223、ISRG ~0.0517（2026 年 10 月案例期间约算值，每日浮动，以 CIBC 官网为准；SPCX 无 CDR，不在列表中） |
-| 资料包与订阅 | 三份可打印清单（`pack/`）+ 邮件订阅 | 订阅由 Buttondown 处理（用户名 xiong），双重确认 |
+| 资料包与订阅 | 三份可打印清单（`pack/`）+ 邮件订阅 | 订阅经统一接口写入 Supabase 名单，邮件由 MailerLite 发送（组与发送设置待 Andy 建好，见 `TASKS.md`） |
 
 ## 统一测算假设
 
@@ -47,10 +47,10 @@ python3 -m http.server 8000
 
 仓库已含 `.github/workflows/pages.yml` 和 `.github/workflows/ci.yml`。推送到 `main` 分支时先跑 `npm test`，通过后才部署到 GitHub Pages。GitHub 仓库 → Settings → Pages → Build and deployment → Source 应选 **GitHub Actions**。
 
-## 漏斗与邮件（待 Andy 定）
+## 漏斗与邮件
 
 - 本站是免费工具入口，付费工具包在另一个仓库和站点：https://property-playbooks.vercel.app/（买房工具包，预售登记中，结账链接尚未上线）。本站只链接过去，不声称结账已上线。
-- 本站订阅走 Buttondown（xiong），property-playbooks 原定走 MailerLite + Supabase。两套名单是否合并、怎么合并，由 Andy 定，见 `DECISIONS.md` 和 `TASKS.md`。在定下来之前不要擅自迁移名单。
+- 本站订阅走统一获客：表单 → property-playbooks 的 `/api/signup` → 同一 Supabase `leads` 表（`product=gta-invest`），邮件由 MailerLite 发送，合同见 `docs/leads.md`。Buttondown（xiong）已于 2026-11-15 退场，旧名单有无订阅者待 Andy 查 Buttondown 后台确认，迁移步骤见 `docs/leads.md`。MailerLite 账号与 gta-invest 分组尚未建好，在建好之前新订阅只会记进名单、不会收到邮件；不要把 gta-invest 订阅者导进 `buyer-toolkit-waitlist` 组。
 - 本站没有装访问统计。Plausible 或 GA 需要 Andy 提供 ID 后才能接，见 `TASKS.md`，不要凭空编一个 ID。
 - YouTube 频道链接尚未核实到准确地址，页面上只写频道名和 handle，不放猜测的链接。Andy 提供准确链接后接上，见 `TASKS.md`。
 
